@@ -49,22 +49,22 @@
         <tr>
           <td>Play data: what happened in each delivery and ride</td>
           <td>Tune difficulty, find what is too hard or too easy</td>
-          <td>Yes, once sending is switched on (see below)</td>
+          <td>Yes, unless you turn off Share play data (see below)</td>
         </tr>
         <tr>
           <td>Performance data: how smoothly the game ran</td>
           <td>Find and fix slow or broken spots</td>
-          <td>Yes, once sending is switched on</td>
+          <td>Yes, unless you turn off Share play data</td>
         </tr>
         <tr>
           <td>Device model, operating system, screen size, game version</td>
           <td>Know which phones have which problems</td>
-          <td>Yes, once sending is switched on</td>
+          <td>Yes, unless you turn off Share play data</td>
         </tr>
         <tr>
           <td>A random install id and play-session ids</td>
           <td>Tell one install’s play apart from another’s, without knowing who you are</td>
-          <td>Yes, once sending is switched on</td>
+          <td>Yes, unless you turn off Share play data</td>
         </tr>
         <tr>
           <td>Your progress and settings</td>
@@ -117,10 +117,12 @@
     <p>The only special permission the game uses is vibration, for feedback while you ride. You can turn vibration off in the game’s settings.</p>
 
     <h2>When it leaves your phone</h2>
-    <p>Early test builds keep these records on your phone only; nothing is sent. A later update will send them, and from that update on:</p>
+    <p>From version 0.3.0 the game sends these records to us. The first time you open it, it shows a short notice saying so, and it sends nothing until you have seen it. From then on:</p>
     <ul>
       <li>Records are sent in small batches when your phone is online, over an encrypted connection (HTTPS).</li>
       <li>They go to a small server run by Bryo Studio at <code>bryostudio.com</code>, which checks them and stores them.</li>
+      <li>Records an earlier version of the game kept on your phone are sent once, after the notice.</li>
+      <li>If you turn off Share play data, the game records nothing and sends nothing. Turning it back on never sends anything from the time it was off.</li>
     </ul>
     <p>Like any internet connection, sending a batch reveals your phone’s IP address to our server. We use it only to deliver the batch and protect the server from abuse; we do not store it with your play records.</p>
 
@@ -140,10 +142,10 @@
 
     <h2>Your choices</h2>
     <h3>Stopping it</h3>
-    <p>A setting to turn off sending is planned. Until it is in the game, uninstalling the game stops all recording and sending.</p>
+    <p>Turn off <strong>Share play data</strong> in the game: open the in-game phone, then Settings. While it is off, the game records nothing and sends nothing. Uninstalling the game also stops all recording and sending.</p>
 
     <h3>Asking us to delete it, or to see it</h3>
-    <p>Write to <a href="mailto:kyleblankrollins@gmail.com">kyleblankrollins@gmail.com</a> and we will delete the records of your install, or send you a copy. Because we do not know who you are, we need your install id to find them. The game will show it in its settings; until it does, tell us your phone model and roughly when you played, and we will do our best. We answer within 30 days.</p>
+    <p>Write to <a href="mailto:kyleblankrollins@gmail.com">kyleblankrollins@gmail.com</a> and we will delete the records of your install, or send you a copy. Because we do not know who you are, we need your install id to find them. The game shows it at the foot of its Settings page, in the in-game phone. If you can no longer open the game, tell us your phone model and roughly when you played, and we will do our best. We answer within 30 days.</p>
     <p>Depending on where you live, you may have further rights under data protection law, such as to object or to complain to your local data protection authority.</p>
 
     <h2>What stays on your phone</h2>

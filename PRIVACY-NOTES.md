@@ -134,6 +134,13 @@ stays on the phone: there is no networking code anywhere.
 Keep the policy and the game in step. Each line: what the policy says ->
 what the game does today -> what to do.
 
+**Update 2026-10-17:** A, D, E and I are done: the game sends from version
+0.3.0 (Pizza Ambulance task T-1) through `netlify/functions/telemetry.ts`,
+shows the install id at the foot of its Settings page, and has a Share play
+data switch; with it off, release builds record nothing and send nothing
+(task T-2; debug builds keep a local file for USB pulls). The policy page was
+updated the same day. N (the package name) is still to do.
+
 | # | Policy says | Today | To do |
 |---|---|---|---|
 | A | Records are sent in batches over HTTPS to our server, stored in MongoDB Atlas | Nothing is sent; no network code; no INTERNET permission | Build the sender and the Netlify Function. The policy already says early test builds send nothing. |
