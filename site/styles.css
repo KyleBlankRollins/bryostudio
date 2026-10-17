@@ -1,0 +1,477 @@
+/* Bryo Studio: the one stylesheet for every page.
+   Mobile first. Colours are custom properties; dark mode swaps them. */
+
+:root {
+  --bg: #f6f2e8;          /* warm cream */
+  --surface: #fffcf4;     /* lighter cream for cards */
+  --text: #1e2a23;        /* deep moss ink */
+  --muted: #4c5751;       /* stone */
+  --moss: #3b6634;        /* moss green, links and accents */
+  --moss-soft: #dfe8d2;   /* pale moss wash */
+  --moss-mark: #4f8540;   /* the mark's moss */
+  --river: #22607f;       /* river blue */
+  --river-soft: #d8e8ee;  /* pale river wash */
+  --river-mark: #3a86ad;  /* the mark's stream */
+  --stone: #8b928d;       /* stone grey, decoration only */
+  --border: #d8d1c0;
+  --focus: #b4530f;       /* warm amber focus ring */
+
+  --gutter: 1.25rem;
+  --measure: 65ch;
+  --radius: 14px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131a16;
+    --surface: #1b2420;
+    --text: #e9e5d9;
+    --muted: #b3bab1;
+    --moss: #9fca8b;
+    --moss-soft: #22301f;
+    --moss-mark: #7fb36a;
+    --river: #86c3e0;
+    --river-soft: #18303b;
+    --river-mark: #5fa9d1;
+    --stone: #6f7771;
+    --border: #2f3b35;
+    --focus: #f0a35e;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+/* ---------- Links and focus ---------- */
+
+a {
+  color: var(--moss);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--river);
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 10;
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--moss);
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0.75rem var(--gutter) 1.1rem;
+}
+
+/* a thin stream running under the header */
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 0;
+  height: 10px;
+  background: var(--river-mark);
+  opacity: 0.55;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M0 5c10-4 20-4 30 0s20 4 30 0 20-4 30 0 20 4 30 0' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 10px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M0 5c10-4 20-4 30 0s20 4 30 0 20-4 30 0 20 4 30 0' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 10px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
+
+.brand:hover {
+  color: var(--text);
+}
+
+.brand svg {
+  width: 34px;
+  height: 34px;
+  flex: none;
+}
+
+.mark-moss { fill: var(--moss-mark); }
+.mark-moss-dark { fill: var(--moss); }
+.mark-stone { fill: var(--stone); }
+.mark-stream {
+  fill: none;
+  stroke: var(--river-mark);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.25rem;
+  margin: 0 -0.6rem;
+}
+
+.site-header nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 0.6rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-header nav a:hover,
+.site-header nav a[aria-current="page"] {
+  color: var(--moss);
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
+/* ---------- Main: long-form text works with no classes ---------- */
+
+.page {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 2rem var(--gutter) 3rem;
+}
+
+.page h1,
+.page h2,
+.page h3 {
+  line-height: 1.25;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.page h1 {
+  font-size: clamp(1.9rem, 1.4rem + 2.4vw, 2.6rem);
+  letter-spacing: -0.01em;
+  margin: 0.5rem 0 1rem;
+}
+
+.page h2 {
+  font-size: 1.4rem;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.page h3 {
+  font-size: 1.12rem;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.page p,
+.page ul,
+.page ol {
+  margin: 0 0 1rem;
+}
+
+.page ul,
+.page ol {
+  padding-left: 1.4rem;
+}
+
+.page li {
+  margin-bottom: 0.35rem;
+}
+
+.page li::marker {
+  color: var(--moss);
+}
+
+.page strong {
+  font-weight: 650;
+}
+
+.page hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+.page code {
+  font-size: 0.92em;
+  background: var(--moss-soft);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+.updated {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.note {
+  margin: 1.5rem 0;
+  padding: 1rem 1.15rem;
+  background: var(--river-soft);
+  border-left: 4px solid var(--river);
+  border-radius: 0 10px 10px 0;
+}
+
+.note > :last-child {
+  margin-bottom: 0;
+}
+
+/* Tables scroll inside themselves on narrow screens, never the page. */
+.page table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.25rem 0 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.page th,
+.page td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  min-width: 8rem;
+}
+
+.page thead th {
+  background: var(--moss-soft);
+  font-weight: 650;
+  border-bottom: 2px solid var(--moss);
+}
+
+.page caption {
+  text-align: left;
+  color: var(--muted);
+  padding-bottom: 0.5rem;
+}
+
+/* ---------- Home and game page pieces ---------- */
+
+.lede {
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.intro {
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin: 0;
+  color: var(--moss);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page .makes {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.page .makes li {
+  margin: 0;
+  padding: 0.3rem 0.85rem;
+  background: var(--moss-soft);
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+.card {
+  position: relative;
+  margin: 1.25rem 0 2rem;
+  padding: 1.4rem 1.25rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* a little moss along the card's top edge */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--moss-mark), var(--river-mark));
+}
+
+.card h2,
+.card h3 {
+  margin-top: 0.25rem;
+}
+
+.card > :last-child {
+  margin-bottom: 0;
+}
+
+.status {
+  display: inline-block;
+  margin: 0 0 0.5rem;
+  padding: 0.15rem 0.7rem;
+  border: 1px solid var(--river);
+  border-radius: 999px;
+  color: var(--river);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 1.2rem;
+  background: var(--moss);
+  color: var(--bg);
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--river);
+  color: var(--bg);
+}
+
+.features {
+  padding-left: 1.4rem;
+}
+
+.shot-placeholder {
+  /* reserved for screenshots later; hidden until then */
+  display: none;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  position: relative;
+  margin-top: auto;
+  padding: 2.25rem var(--gutter) 1.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* a wider, slower stream above the footer */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 18px;
+  background: var(--river-mark);
+  opacity: 0.4;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M0 6q25-5 50 0t50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M-25 13q25 4 50 0t50 0 50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") repeat-x 0 0 / 200px 18px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M0 6q25-5 50 0t50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M-25 13q25 4 50 0t50 0 50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") repeat-x 0 0 / 200px 18px;
+}
+
+.site-footer a {
+  display: inline-block;
+  padding: 0.7rem 0.15rem;
+  color: var(--muted);
+}
+
+.site-footer a:hover {
+  color: var(--moss);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 2rem;
+  }
+
+  .page {
+    padding-top: 3rem;
+  }
+
+  .card {
+    padding: 1.75rem 1.75rem 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a,
+  .button {
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+}
+
+@media print {
+  .site-header::after,
+  .site-footer::before,
+  .skip-link {
+    display: none;
+  }
+}
