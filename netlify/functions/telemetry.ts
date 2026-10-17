@@ -18,7 +18,8 @@
 // 503 when the database cannot be reached (the game keeps the batch and
 // tries again later).
 
-import { MongoClient } from "mongodb";
+import type { Config } from "@netlify/functions";
+import { MongoClient, type Collection } from "mongodb";
 
 const DATABASE = "pizza_ambulance";
 const COLLECTION = "telemetry";
@@ -35,11 +36,33 @@ const MAX_LINES = 500;
 const MAX_LINE_BYTES = 16 * 1024;
 const MAX_LINE_KEYS = 200;
 
+/** One line as the game wrote it: a version, perhaps a kind, and its fields. */
+type Line = { v: number; kind?: string } & Record<string, unknown>;
+
+/** A batch as posted, once checked. */
+interface Batch {
+  game: string;
+  install: string;
+  app: string;
+  batch: string;
+  lines: Line[];
+}
+
+/** A line as stored: the game's fields and where and when it came from. */
+type StoredLine = Line & {
+  _game: string;
+  _install: string;
+  _app: string;
+  _batch: string;
+  _received: Date;
+};
+
 // One client per function instance, reused across calls: connecting is the
 // slow part, and Atlas's free tier limits connections.
-let clientPromise = null;
+let clientPromise: Promise<MongoClient> | null = null;
+let indexed: Promise<unknown> | null = null;
 
-function getCollection() {
+async function getCollection(): Promise<Collection<StoredLine>> {
   if (clientPromise === null) {
     const uri = process.env.MONGODB_URI;
     if (!uri) {
@@ -50,46 +73,55 @@ function getCollection() {
       serverSelectionTimeoutMS: 5000,
       appName: "bryostudio-telemetry",
     });
-    clientPromise = client.connect().catch((error) => {
+    clientPromise = client.connect().catch((error: unknown) => {
       clientPromise = null;
       throw error;
     });
   }
-  return clientPromise.then((client) => {
-    const collection = client.db(DATABASE).collection(COLLECTION);
-    if (!indexed) {
-      // Makes the duplicate check below quick; creating it again is a no-op.
-      indexed = collection
-        .createIndex({ _game: 1, _install: 1, _batch: 1 }, { name: "batch" })
-        .catch((error) => {
-          indexed = null;
-          console.error("telemetry: cannot make the batch index:", error.message);
-        });
-    }
-    return collection;
-  });
+  const client = await clientPromise;
+  const collection = client.db(DATABASE).collection<StoredLine>(COLLECTION);
+  if (indexed === null) {
+    // Makes the duplicate check below quick; creating it again is a no-op.
+    indexed = collection
+      .createIndex({ _game: 1, _install: 1, _batch: 1 }, { name: "batch" })
+      .catch((error: unknown) => {
+        indexed = null;
+        console.error("telemetry: cannot make the batch index:", message(error));
+      });
+  }
+  return collection;
 }
 
-let indexed = null;
+function message(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
 
-function reply(status, body) {
+function reply(status: number, body: Record<string, unknown>): Response {
   return new Response(JSON.stringify(body), {
     status,
     headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
   });
 }
 
-function isPlainObject(value) {
+function isPlainObject(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
+function isId(value: unknown): value is string {
+  return typeof value === "string" && ID.test(value);
+}
+
 // Why a line is refused, or "" when it is fine.
-function checkLine(line) {
+function checkLine(line: unknown): string {
   if (!isPlainObject(line)) return "a line is not an object";
-  if (!Number.isInteger(line.v) || line.v < 1 || line.v > 99) return "a line has no version";
-  if ("kind" in line && !KINDS.has(line.kind)) return "a line has an unknown kind";
-  if (Object.keys(line).length > MAX_LINE_KEYS) return "a line has too many fields";
-  for (const key of Object.keys(line)) {
+  const v = line.v;
+  if (typeof v !== "number" || !Number.isInteger(v) || v < 1 || v > 99) return "a line has no version";
+  if ("kind" in line && !(typeof line.kind === "string" && KINDS.has(line.kind))) {
+    return "a line has an unknown kind";
+  }
+  const keys = Object.keys(line);
+  if (keys.length > MAX_LINE_KEYS) return "a line has too many fields";
+  for (const key of keys) {
     if (key.startsWith("$") || key.includes(".") || key.startsWith("_")) {
       return "a line has a field name that is not allowed";
     }
@@ -98,7 +130,23 @@ function checkLine(line) {
   return "";
 }
 
-export default async (request) => {
+// The batch, or why it is refused.
+function checkBatch(value: unknown): Batch | string {
+  if (!isPlainObject(value)) return "not an object";
+  const { game, install, app, batch, lines } = value;
+  if (typeof game !== "string" || !GAMES.has(game)) return "unknown game";
+  if (!isId(install)) return "bad install id";
+  if (!isId(batch)) return "bad batch id";
+  if (typeof app !== "string" || app.length === 0 || app.length > 32) return "bad app version";
+  if (!Array.isArray(lines) || lines.length === 0 || lines.length > MAX_LINES) return "bad lines";
+  for (const line of lines) {
+    const why = checkLine(line);
+    if (why) return why;
+  }
+  return { game, install, app, batch, lines: lines as Line[] };
+}
+
+export default async (request: Request): Promise<Response> => {
   if (request.method !== "POST") {
     return reply(405, { error: "POST only" });
   }
@@ -108,32 +156,22 @@ export default async (request) => {
     return reply(413, { error: "batch too big" });
   }
 
-  let batch;
+  let parsed: unknown;
   try {
-    batch = JSON.parse(text);
+    parsed = JSON.parse(text);
   } catch {
     return reply(400, { error: "not JSON" });
   }
-  if (!isPlainObject(batch)) return reply(400, { error: "not an object" });
-  if (!GAMES.has(batch.game)) return reply(400, { error: "unknown game" });
-  if (typeof batch.install !== "string" || !ID.test(batch.install)) return reply(400, { error: "bad install id" });
-  if (typeof batch.batch !== "string" || !ID.test(batch.batch)) return reply(400, { error: "bad batch id" });
-  if (typeof batch.app !== "string" || batch.app.length === 0 || batch.app.length > 32) {
-    return reply(400, { error: "bad app version" });
-  }
-  if (!Array.isArray(batch.lines) || batch.lines.length === 0 || batch.lines.length > MAX_LINES) {
-    return reply(400, { error: "bad lines" });
-  }
-  for (const line of batch.lines) {
-    const why = checkLine(line);
-    if (why) return reply(400, { error: why });
+  const batch = checkBatch(parsed);
+  if (typeof batch === "string") {
+    return reply(400, { error: batch });
   }
 
-  let collection;
+  let collection: Collection<StoredLine>;
   try {
     collection = await getCollection();
   } catch (error) {
-    console.error("telemetry: cannot reach the database:", error.message);
+    console.error("telemetry: cannot reach the database:", message(error));
     return reply(503, { error: "try again later" });
   }
 
@@ -147,7 +185,7 @@ export default async (request) => {
       return reply(202, { stored: 0, duplicate: true });
     }
     const received = new Date();
-    const documents = batch.lines.map((line) => ({
+    const documents: StoredLine[] = batch.lines.map((line) => ({
       ...line,
       _game: batch.game,
       _install: batch.install,
@@ -158,12 +196,12 @@ export default async (request) => {
     const result = await collection.insertMany(documents, { ordered: false });
     return reply(202, { stored: result.insertedCount });
   } catch (error) {
-    console.error("telemetry: cannot store the batch:", error.message);
+    console.error("telemetry: cannot store the batch:", message(error));
     return reply(503, { error: "try again later" });
   }
 };
 
-export const config = {
+export const config: Config = {
   path: "/api/telemetry",
   // A game sends a batch every few minutes at most; this stops one address
   // from flooding the function and the database.

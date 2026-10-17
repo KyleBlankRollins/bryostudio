@@ -1,1 +1,21 @@
-{"name":"bryostudio","private":true,"type":"module","engines":{"node":">=20"},"dependencies":{"mongodb":"^7.7.0"}}
+{
+  "name": "bryostudio",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.json",
+    "test:telemetry": "node scripts/send-test-telemetry.ts",
+    "build": "npm run typecheck"
+  },
+  "dependencies": {
+    "mongodb": "^7.7.0"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^6.0.2",
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  }
+}

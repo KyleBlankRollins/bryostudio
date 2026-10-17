@@ -4,12 +4,13 @@ The static site for `bryostudio.com`. Plain HTML and one stylesheet, no build
 step. `site/` is the publish folder; `netlify.toml` points Netlify at it.
 
 ```
-netlify.toml          Netlify settings: publish folder, functions, headers, caching
-package.json          the functions' one dependency (the MongoDB driver)
+netlify.toml          Netlify settings: publish folder, build (type-check), functions, headers, caching
+package.json          npm scripts; the MongoDB driver; TypeScript 7 and types
+tsconfig.json         type-checking for the functions and scripts (nothing is emitted)
 netlify/functions/
-  telemetry.mjs       POST /api/telemetry: games' telemetry into MongoDB Atlas
+  telemetry.ts        POST /api/telemetry: games' telemetry into MongoDB Atlas
 scripts/
-  send-test-telemetry.mjs   posts a sample batch to check the whole path
+  send-test-telemetry.ts    posts a sample batch to check the whole path
 site/
   index.html          home
   pizza-ambulance/    the first game's page
@@ -27,10 +28,20 @@ To preview locally, serve `site/` from any static server, for example
 root-relative (`/styles.css`), so opening the files straight from disk will
 not pick up the stylesheet.
 
+## TypeScript
+
+The functions and scripts are TypeScript, checked by TypeScript 7
+(`npm run typecheck`, which Netlify also runs as the build, so a type error
+fails the deploy). Nothing is compiled to disk: Netlify bundles the functions
+itself, and Node (22.18 or later) runs the scripts straight from `.ts`, so
+`tsconfig.json` allows only syntax Node can strip (`erasableSyntaxOnly`: no
+enums, namespaces or parameter properties). Run `npm install` once after
+cloning.
+
 ## Telemetry
 
 Games post batches of telemetry lines to `https://bryostudio.com/api/telemetry`
-(`netlify/functions/telemetry.mjs`; the request and replies are described at
+(`netlify/functions/telemetry.ts`; the request and replies are described at
 the top of that file). The function checks every batch and writes it to the
 `pizza_ambulance.telemetry` collection of the Atlas cluster. A game never
 holds database credentials.
@@ -46,12 +57,12 @@ holds database credentials.
   a line over 16 KB, unknown games or line kinds, field names starting with
   `$`, `_` or containing `.`. One address may post 30 times a minute.
 - To check the whole path after a deploy:
-  `node scripts/send-test-telemetry.mjs`. Its lines have an install id
+  `npm run test:telemetry`. Its lines have an install id
   starting `test-`; delete them in Atlas with
   `{"_install": {"$regex": "^test-"}}`.
 - Locally, `netlify dev` serves the site and the function on
   `http://localhost:8888` with the Netlify environment variables, and
-  `node scripts/send-test-telemetry.mjs http://localhost:8888` posts to it.
+  `npm run test:telemetry -- http://localhost:8888` posts to it.
 
 The contact email is not decided yet. Every page uses the literal
 placeholder `{{CONTACT_EMAIL}}`; replace it across `site/` once it is.

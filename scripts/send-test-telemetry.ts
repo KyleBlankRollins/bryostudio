@@ -1,17 +1,23 @@
 // Posts a small sample batch to the telemetry function, twice, to check the
-// whole path end to end: the second post must come back as a duplicate.
+// whole path end to end: the second post must come back as a duplicate, and a
+// bad batch must be refused.
 //
-//   node scripts/send-test-telemetry.mjs                       # https://bryostudio.com
-//   node scripts/send-test-telemetry.mjs http://localhost:8888 # netlify dev
+//   npm run test:telemetry                                   # https://bryostudio.com
+//   npm run test:telemetry -- http://localhost:8888          # netlify dev
 //
 // The lines it stores have an install id starting "test-"; delete them in
 // Atlas's Data Explorer with the filter {"_install": {"$regex": "^test-"}}.
 
 import { randomBytes } from "node:crypto";
 
+interface Reply {
+  status: number;
+  body: string;
+}
+
 const base = (process.argv[2] ?? "https://bryostudio.com").replace(/\/$/, "");
 const url = `${base}/api/telemetry`;
-const id = (prefix) => `${prefix}${randomBytes(12).toString("hex")}`;
+const id = (prefix: string): string => `${prefix}${randomBytes(12).toString("hex")}`;
 
 const batch = {
   game: "pizza-ambulance",
@@ -24,7 +30,7 @@ const batch = {
   ],
 };
 
-async function post(body) {
+async function post(body: unknown): Promise<Reply> {
   const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

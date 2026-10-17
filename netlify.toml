@@ -1,7 +1,14 @@
 [build]
   publish = "site"
+  # Type-checks the functions and scripts (TypeScript 7); a type error fails
+  # the deploy. The site itself has no build step.
+  command = "npm run build"
 
-# Serverless functions (each answers at the path in its own config).
+[build.environment]
+  NODE_VERSION = "24"
+
+# Serverless functions, written in TypeScript and bundled by Netlify (each
+# answers at the path in its own config).
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
