@@ -1,6 +1,11 @@
 [build]
   publish = "site"
 
+# Serverless functions (each answers at the path in its own config).
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # Security headers for every page.
 [[headers]]
   for = "/*"

@@ -4,7 +4,12 @@ The static site for `bryostudio.com`. Plain HTML and one stylesheet, no build
 step. `site/` is the publish folder; `netlify.toml` points Netlify at it.
 
 ```
-netlify.toml          Netlify settings: publish folder, headers, caching
+netlify.toml          Netlify settings: publish folder, functions, headers, caching
+package.json          the functions' one dependency (the MongoDB driver)
+netlify/functions/
+  telemetry.mjs       POST /api/telemetry: games' telemetry into MongoDB Atlas
+scripts/
+  send-test-telemetry.mjs   posts a sample batch to check the whole path
 site/
   index.html          home
   pizza-ambulance/    the first game's page
@@ -21,6 +26,32 @@ To preview locally, serve `site/` from any static server, for example
 `npx serve site` or `python -m http.server -d site 8080`. Links are
 root-relative (`/styles.css`), so opening the files straight from disk will
 not pick up the stylesheet.
+
+## Telemetry
+
+Games post batches of telemetry lines to `https://bryostudio.com/api/telemetry`
+(`netlify/functions/telemetry.mjs`; the request and replies are described at
+the top of that file). The function checks every batch and writes it to the
+`pizza_ambulance.telemetry` collection of the Atlas cluster. A game never
+holds database credentials.
+
+- **`MONGODB_URI`** is set in Netlify (Site configuration, Environment
+  variables), scoped to Functions and marked secret. It connects as the
+  Atlas user `telemetry-writer`, which may only read and write the
+  `pizza_ambulance` database. It is never written in this repository.
+- Each stored line keeps the game's fields and adds `_game`, `_install` (a
+  random id per install), `_app` (the game's version), `_batch` and
+  `_received`. A batch sent again is stored once.
+- Refused whole: anything but POST, bodies over 512 KB, more than 500 lines,
+  a line over 16 KB, unknown games or line kinds, field names starting with
+  `$`, `_` or containing `.`. One address may post 30 times a minute.
+- To check the whole path after a deploy:
+  `node scripts/send-test-telemetry.mjs`. Its lines have an install id
+  starting `test-`; delete them in Atlas with
+  `{"_install": {"$regex": "^test-"}}`.
+- Locally, `netlify dev` serves the site and the function on
+  `http://localhost:8888` with the Netlify environment variables, and
+  `node scripts/send-test-telemetry.mjs http://localhost:8888` posts to it.
 
 The contact email is not decided yet. Every page uses the literal
 placeholder `{{CONTACT_EMAIL}}`; replace it across `site/` once it is.
