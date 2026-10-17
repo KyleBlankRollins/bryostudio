@@ -152,7 +152,7 @@ updated the same day. N (the package name) is still to do.
 | G | IP address used to deliver the batch, not stored with records | No server | Make sure the Function does not write IP (or headers) into Atlas, and check Netlify's function log retention. |
 | H | Deletion/copy on email request within 30 days | No tooling | A script/query to delete or export by install id. |
 | I | Sending happens "once sending is switched on" (summary table) | Today telemetry is written on-device in release builds too, never sent | When sending ships, the "early test builds" sentence can be removed. Consider whether release builds should keep an ever-growing local file (it has no size cap; cleared on uninstall). |
-| J | Contact email | `{{CONTACT_EMAIL}}` placeholder | Replace across `site/` |
+| J | Contact email | Done 2026-10-17: hello@ and privacy@bryostudio.com (Google Workspace) | |
 | K | Service providers: Netlify and MongoDB Atlas; "servers may be in another country" | Atlas region not chosen | Pick the Atlas region; if you serve EU/UK players, the providers' DPAs/SCCs cover transfers. Lawyer question. |
 | L | Who "we" are | Only "Bryo Studio, a one-person studio" | GDPR expects the controller's legal name and contact address; Play shows the developer's address from the Play account. Consider adding a legal name / postal address. |
 | M | Testers' builds may record more detail | Same telemetry today | Keep it truthful if tester builds diverge (still no personal data). |

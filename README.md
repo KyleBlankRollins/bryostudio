@@ -64,8 +64,8 @@ holds database credentials.
   `http://localhost:8888` with the Netlify environment variables, and
   `npm run test:telemetry -- http://localhost:8888` posts to it.
 
-The contact email is not decided yet. Every page uses the literal
-placeholder `{{CONTACT_EMAIL}}`; replace it across `site/` once it is.
+The contact addresses are `hello@bryostudio.com` (footers, general contact)
+and `privacy@bryostudio.com` (the privacy pages' requests), both Google Workspace aliases.
 
 ## Page shell
 
@@ -104,7 +104,7 @@ section (leave it off on other pages), and what goes inside `<main>`.
     <!-- page content -->
   </main>
   <footer class="site-footer">
-    <p>© 2026 Bryo Studio · <a href="/privacy/">Privacy</a> · <a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a></p>
+    <p>© 2026 Bryo Studio · <a href="/privacy/">Privacy</a> · <a href="mailto:hello@bryostudio.com">hello@bryostudio.com</a></p>
   </footer>
 </body>
 </html>
