@@ -9,6 +9,8 @@ package.json          npm scripts; the MongoDB driver; TypeScript 7 and types
 tsconfig.json         type-checking for the functions and scripts (nothing is emitted)
 netlify/functions/
   telemetry.ts        POST /api/telemetry: games' telemetry into MongoDB Atlas
+business/
+  llc-checklist.md    forming Bryo Studio LLC in Texas, and the Play organization account (never published)
 scripts/
   send-test-telemetry.ts    posts a sample batch to check the whole path
 site/
