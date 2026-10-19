@@ -83,5 +83,17 @@ Lines that state facts about the game. When the game changes, check these:
 - **Contact email:** `support@bryostudio.com`
 - **Website:** `https://bryostudio.com/pizza-ambulance/`
 - **Privacy policy:** `https://bryostudio.com/privacy/pizza-ambulance/`
-- **Graphics:** the icon (512 × 512), feature graphic (1024 × 500) and
-  phone screenshots come from the game repository (app icon task I-1).
+- **Graphics**, ready to upload, in `store/pizza-ambulance/`:
+  - `icon-512.png`: the app icon (512 × 512, opaque), the "hero" direction
+    with a thin navy outline (game task I-1).
+  - `feature-graphic.png`: the feature graphic (1024 × 500, 24-bit, no
+    alpha): the hillside corner shot with the Kenney Thick title lockup at
+    half the width (tasks F-1 and L-1). Made for a listing without a promo
+    video; with one, Play draws a play button over the middle of the title,
+    and the lockup would need to shrink to about a third of the width.
+  - Phone screenshots are made by the game repository's
+    `tools\store_screenshots.ps1` (task S-1) into its git-ignored
+    `build\screenshots\s1-store\`: upload `01-riding` to `06-map`, in the
+    order result, riding, Harbour, board, shop, map.
+- All of these are made from the game: re-make them there when it changes,
+  then copy the icon and feature graphic here.
