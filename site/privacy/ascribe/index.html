@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ascribe privacy policy · Bryo Studio</title>
+  <meta name="description" content="Ascribe collects nothing: what it sends, when you run something that needs the network, and to whom.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://bryostudio.com/privacy/ascribe/">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <ellipse class="mark-stone" cx="16" cy="19" rx="12.5" ry="6.5"/>
+        <path class="mark-moss" d="M4 19.5c0-3.2 2.2-5.4 5-5.4.9-2.8 3.2-4.6 6-4.6 2.1 0 3.9 1 5 2.6.7-.3 1.5-.5 2.4-.5 3.6 0 5.6 2.9 5.6 6.4-6 2.6-17.6 2.8-24 1.5z"/>
+        <path class="mark-stream" d="M3 28c3.3-2.6 6.7-2.6 10 0s6.7 2.6 10 0c2-1.6 4-2 6-1.2"/>
+      </svg>
+      Bryo Studio
+    </a>
+    <nav aria-label="Main">
+      <a href="/pizza-ambulance/">Pizza Ambulance</a>
+      <a href="/ascribe/">Ascribe</a>
+      <a href="/privacy/" aria-current="page">Privacy</a>
+    </nav>
+  </header>
+  <main id="main" class="page">
+    <h1>Ascribe privacy policy</h1>
+    <p class="updated">Effective and last updated: 20 October 2026</p>
+
+    <div class="note">
+      <p>In short: Ascribe collects nothing. It has no telemetry, no crash reports and no account, calls no AI service, and sends nothing to Bryo Studio. It reaches the network only when you run something that needs it, and only to the services you point it at.</p>
+    </div>
+
+    <p>This policy covers Ascribe, made by Bryo Studio (“we”, “us”): the <code>ascribe</code> command, the Ascribe extension for VS Code, the <code>@ascribed</code> packages on npm, and the website <a href="https://ascribed-dev.com">ascribed-dev.com</a>. The <a href="/privacy/">Bryo Studio privacy policy</a> covers this website.</p>
+
+    <h2>What leaves your computer</h2>
+    <p>Ascribe reads your project’s files and answers on your computer. These are the only things that send anything anywhere, and each happens only when you do it:</p>
+    <table>
+      <caption>When Ascribe reaches the network</caption>
+      <thead>
+        <tr>
+          <th scope="col">When you</th>
+          <th scope="col">What is sent</th>
+          <th scope="col">To whom</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Review a pull request, in VS Code or the site preview</td>
+          <td>The pull request’s comment threads are read, and the comments you write are posted, signed in as you</td>
+          <td>GitHub</td>
+        </tr>
+        <tr>
+          <td>Run <code>ascribe sources fetch</code> or <code>update</code></td>
+          <td>A <code>git</code> fetch of the repositories your project’s <code>ascribe.toml</code> names</td>
+          <td>Wherever those repositories are hosted</td>
+        </tr>
+        <tr>
+          <td>Run <code>ascribe report links</code></td>
+          <td>A request to each external link in your docs, made by lychee, a link checker you install</td>
+          <td>The sites your docs link to</td>
+        </tr>
+        <tr>
+          <td>Run <code>ascribe report agents</code></td>
+          <td>Requests to your published site, made by afdocs, a checker you install</td>
+          <td>Your site’s host</td>
+        </tr>
+        <tr>
+          <td>Run <code>ascribe observe</code></td>
+          <td>Whatever your project’s own test commands send; Ascribe runs them and sends nothing itself</td>
+          <td>Your tests decide</td>
+        </tr>
+        <tr>
+          <td>Install or update Ascribe</td>
+          <td>The download</td>
+          <td>npm, Homebrew, GitHub or the VS Code Marketplace, under their own policies</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>AI assistants and agents</h2>
+    <p>Ascribe calls no AI model and holds no key for one. When you use an AI coding agent with Ascribe, what Ascribe tells the agent, such as a page’s text or a list of problems, becomes part of what that agent sends to its model, as any file it reads does, under the agent’s own terms. A prompt Ascribe writes for your agent stays on your computer until you send it.</p>
+    <p>Ascribe’s documentation says more in <a href="https://ascribed-dev.com/docs/agents/#whats-sent-where">What’s sent where</a>.</p>
+
+    <h2>The website</h2>
+    <p><a href="https://ascribed-dev.com">ascribed-dev.com</a> sets no cookies and runs no analytics or tracking. It is hosted by <strong>Netlify</strong>, whose servers, like any web server, see your IP address and browser details when you visit, and keep short-lived logs for running the service and keeping it secure. We do not use these logs to identify visitors.</p>
+
+    <h2>Questions</h2>
+    <p>Write to <a href="mailto:privacy@bryostudio.com">privacy@bryostudio.com</a>.</p>
+  </main>
+  <footer class="site-footer">
+    <p>© 2026 Bryo Studio · <a href="/privacy/">Privacy</a> · <a href="mailto:hello@bryostudio.com">hello@bryostudio.com</a></p>
+  </footer>
+</body>
+</html>

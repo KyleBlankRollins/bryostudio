@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ascribe · Bryo Studio</title>
+  <meta name="description" content="Ascribe is documentation written as code and checked like code, made by Bryo Studio: free, open source, and built into a website, plain Markdown and JSON.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://bryostudio.com/ascribe/">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <ellipse class="mark-stone" cx="16" cy="19" rx="12.5" ry="6.5"/>
+        <path class="mark-moss" d="M4 19.5c0-3.2 2.2-5.4 5-5.4.9-2.8 3.2-4.6 6-4.6 2.1 0 3.9 1 5 2.6.7-.3 1.5-.5 2.4-.5 3.6 0 5.6 2.9 5.6 6.4-6 2.6-17.6 2.8-24 1.5z"/>
+        <path class="mark-stream" d="M3 28c3.3-2.6 6.7-2.6 10 0s6.7 2.6 10 0c2-1.6 4-2 6-1.2"/>
+      </svg>
+      Bryo Studio
+    </a>
+    <nav aria-label="Main">
+      <a href="/pizza-ambulance/">Pizza Ambulance</a>
+      <a href="/ascribe/" aria-current="page">Ascribe</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+  </header>
+  <main id="main" class="page">
+    <p class="eyebrow">Software by Bryo Studio</p>
+    <h1>Ascribe</h1>
+    <p class="lede">Documentation written as code, checked like code, and built into a website, plain Markdown and JSON from the same files.</p>
+
+    <!-- SCREENSHOT SPOT: one picture of a page in the editor with a problem
+         underlined, or of the built site, e.g. the one on ascribed-dev.com.
+         Keep it small (WebP, under ~150 KB). -->
+
+    <h2>What it does</h2>
+    <ul class="features">
+      <li>Write pages in Markdown, with a few directives for notes, steps, tabs and content that changes with the product or its version.</li>
+      <li>Check every link, include, phrase and code example as you type in VS Code, and again in CI, so the docs can't quietly break.</li>
+      <li>Build one set of files into a website with Astro, a plain Markdown copy of every page for AI assistants, and JSON.</li>
+      <li>Review a change to the docs as the pages a reader will see, not as a diff of Markdown.</li>
+      <li>Give AI coding agents the same checks, so what they write is held to the same rules as what you write.</li>
+    </ul>
+
+    <h2>Why a small studio makes a docs tool</h2>
+    <p>Documentation drifts from the software it describes, one small change at a time, and nobody notices until a reader follows it into a wall. Ascribe treats docs the way code is treated, so the drift is caught where it starts. It is grown the way everything here is: slowly, a release at a time, with care.</p>
+
+    <h2>Get it</h2>
+    <p>Ascribe has its own site, with its documentation, its install steps and its changelog.</p>
+    <p><a class="button" href="https://ascribed-dev.com">Visit ascribed-dev.com</a></p>
+    <ul>
+      <li>The source, and every release: <a href="https://github.com/ascribed-dev/ascribe">github.com/ascribed-dev/ascribe</a></li>
+      <li>The VS Code extension: <a href="https://marketplace.visualstudio.com/items?itemName=Ascribe.ascribe-vscode">Ascribe on the Visual Studio Marketplace</a></li>
+    </ul>
+    <p>Ascribe is free and open source, under the Mozilla Public License 2.0.</p>
+
+    <h2>Privacy</h2>
+    <p>Ascribe collects nothing. Read what it sends, when, and to whom in the <a href="/privacy/ascribe/">Ascribe privacy policy</a>.</p>
+
+    <h2>Get in touch</h2>
+    <p>Found a bug or have an idea? <a href="https://github.com/ascribed-dev/ascribe/issues">Open an issue on GitHub</a>, where it can be tracked. Report a security problem privately, as <a href="https://github.com/ascribed-dev/ascribe/blob/main/SECURITY.md">Ascribe's security policy</a> says. For anything else, write to <a href="mailto:hello@bryostudio.com">hello@bryostudio.com</a>.</p>
+  </main>
+  <footer class="site-footer">
+    <p>© 2026 Bryo Studio · <a href="/privacy/">Privacy</a> · <a href="mailto:hello@bryostudio.com">hello@bryostudio.com</a></p>
+  </footer>
+</body>
+</html>

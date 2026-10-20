@@ -16,7 +16,8 @@ scripts/
 site/
   index.html          home
   pizza-ambulance/    the first game's page
-  privacy/            privacy pages (index, and one per app)
+  ascribe/            Ascribe's page: what it is, and links to its own site
+  privacy/            privacy pages (index, and one per app or tool)
   404.html            not-found page
   styles.css          the one stylesheet for every page
   favicon.svg         the mark
@@ -99,6 +100,7 @@ section (leave it off on other pages), and what goes inside `<main>`.
     </a>
     <nav aria-label="Main">
       <a href="/pizza-ambulance/">Pizza Ambulance</a>
+      <a href="/ascribe/">Ascribe</a>
       <a href="/privacy/">Privacy</a>
     </nav>
   </header>
