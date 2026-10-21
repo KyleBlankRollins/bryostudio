@@ -11,8 +11,12 @@ netlify/functions/
   telemetry.ts        POST /api/telemetry: games' telemetry into MongoDB Atlas
 business/
   llc-checklist.md    forming Bryo Studio LLC in Texas, and the Play organization account (never published)
+brand/                the marks as pixel grids, the fonts, and the files built from them (see brand/README.md)
+designs/
+  bryo.af             the brand exploration boards (Affinity)
 scripts/
   send-test-telemetry.ts    posts a sample batch to check the whole path
+  build-brand.ts      builds brand/dist/ from the grids (npm run brand)
 site/
   index.html          home
   pizza-ambulance/    the first game's page

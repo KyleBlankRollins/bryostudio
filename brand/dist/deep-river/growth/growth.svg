@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" width="256" height="256" shape-rendering="crispEdges" role="img">
+<title>Bryo Studio</title>
+<style>
+g{visibility:hidden}.f6{visibility:visible}
+@keyframes f0{0%{visibility:hidden}0%{visibility:visible}17.241%{visibility:hidden}}.f0{animation:f0 2900ms step-end forwards}
+@keyframes f1{0%{visibility:hidden}17.241%{visibility:visible}23.448%{visibility:hidden}}.f1{animation:f1 2900ms step-end forwards}
+@keyframes f2{0%{visibility:hidden}23.448%{visibility:visible}29.655%{visibility:hidden}}.f2{animation:f2 2900ms step-end forwards}
+@keyframes f3{0%{visibility:hidden}29.655%{visibility:visible}35.862%{visibility:hidden}}.f3{animation:f3 2900ms step-end forwards}
+@keyframes f4{0%{visibility:hidden}35.862%{visibility:visible}42.069%{visibility:hidden}}.f4{animation:f4 2900ms step-end forwards}
+@keyframes f5{0%{visibility:hidden}42.069%{visibility:visible}48.276%{visibility:hidden}}.f5{animation:f5 2900ms step-end forwards}
+@keyframes f6{0%{visibility:hidden}48.276%{visibility:visible}}.f6{animation:f6 2900ms step-end forwards}
+@media (prefers-reduced-motion:reduce){g{animation:none!important}}
+</style>
+<g class="f0">
+<path fill="#9fdc7c" d="M4 2h1v1h-1z"/>
+<path fill="#2d4456" d="M1 6h5v1h-5z"/>
+<path fill="#56d0f0" d="M0 7h2v1h-2zM3 7h3v1h-3zM7 7h1v1h-1z"/>
+<path fill="#2a86b0" d="M2 7h1v1h-1zM6 7h1v1h-1z"/>
+</g>
+<g class="f1">
+<path fill="#9fdc7c" d="M1 5h6v1h-6zM0 6h1v1h-1z"/>
+<path fill="#2d4456" d="M1 6h5v1h-5z"/>
+<path fill="#56d0f0" d="M0 7h2v1h-2zM3 7h3v1h-3zM7 7h1v1h-1z"/>
+<path fill="#2a86b0" d="M2 7h1v1h-1zM6 7h1v1h-1z"/>
+</g>
+<g class="f2">
+<path fill="#9fdc7c" d="M1 4h7v1h-7zM0 5h1v1h-1z"/>
+<path fill="#5aa66a" d="M1 5h1v1h-1zM3 5h2v1h-2zM6 5h1v1h-1z"/>
+<path fill="#2c6a52" d="M2 5h1v1h-1zM5 5h1v1h-1zM0 6h1v1h-1z"/>
+<path fill="#2d4456" d="M1 6h5v1h-5z"/>
+<path fill="#56d0f0" d="M0 7h2v1h-2zM3 7h3v1h-3zM7 7h1v1h-1z"/>
+<path fill="#2a86b0" d="M2 7h1v1h-1zM6 7h1v1h-1z"/>
+</g>
+<g class="f3">
+<path fill="#9fdc7c" d="M1 3h4v1h-4zM5 4h3v1h-3zM0 5h1v1h-1z"/>
+<path fill="#2c6a52" d="M1 4h1v1h-1zM4 4h1v1h-1zM2 5h1v1h-1zM5 5h1v1h-1zM0 6h1v1h-1z"/>
+<path fill="#5aa66a" d="M2 4h2v1h-2zM1 5h1v1h-1zM3 5h2v1h-2zM6 5h1v1h-1z"/>
+<path fill="#2d4456" d="M1 6h5v1h-5z"/>
+<path fill="#56d0f0" d="M0 7h2v1h-2zM3 7h3v1h-3zM7 7h1v1h-1z"/>
+<path fill="#2a86b0" d="M2 7h1v1h-1zM6 7h1v1h-1z"/>
+</g>
+<g class="f4">
+<path fill="#9fdc7c" d="M1 2h4v1h-4zM5 3h3v1h-3zM0 4h1v1h-1z"/>
+<path fill="#5aa66a" d="M1 3h1v1h-1zM3 3h2v1h-2zM2 4h2v1h-2zM5 4h1v1h-1zM7 4h1v1h-1zM1 5h1v1h-1zM3 5h2v1h-2zM6 5h1v1h-1z"/>
+<path fill="#2c6a52" d="M2 3h1v1h-1zM1 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM5 5h1v1h-1zM0 6h1v1h-1z"/>
+<path fill="#2d4456" d="M1 6h5v1h-5z"/>
+<path fill="#56d0f0" d="M0 7h2v1h-2zM3 7h3v1h-3zM7 7h1v1h-1z"/>
+<path fill="#2a86b0" d="M2 7h1v1h-1zM6 7h1v1h-1z"/>
+</g>
+<g class="f5">
+<path fill="#9fdc7c" d="M1 1h4v1h-4zM5 2h2v1h-2zM0 3h1v1h-1zM7 3h1v1h-1z"/>
+<path fill="#5aa66a" d="M1 2h4v1h-4zM1 3h1v1h-1zM3 3h4v1h-4zM0 4h1v1h-1zM2 4h2v1h-2zM5 4h1v1h-1zM7 4h1v1h-1zM1 5h1v1h-1zM3 5h2v1h-2zM6 5h1v1h-1z"/>
+<path fill="#2c6a52" d="M2 3h1v1h-1zM1 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM5 5h1v1h-1zM0 6h1v1h-1z"/>
+<path fill="#2d4456" d="M1 6h5v1h-5z"/>
+<path fill="#56d0f0" d="M0 7h2v1h-2zM3 7h3v1h-3zM7 7h1v1h-1z"/>
+<path fill="#2a86b0" d="M2 7h1v1h-1zM6 7h1v1h-1z"/>
+</g>
+<g class="f6">
+<path fill="#9fdc7c" d="M2 0h1v1h-1zM1 1h1v1h-1zM3 1h2v1h-2zM5 2h2v1h-2zM0 3h1v1h-1zM7 3h1v1h-1z"/>
+<path fill="#5aa66a" d="M2 1h1v1h-1zM1 2h4v1h-4zM1 3h1v1h-1zM3 3h4v1h-4zM0 4h1v1h-1zM2 4h2v1h-2zM5 4h1v1h-1zM7 4h1v1h-1zM1 5h1v1h-1zM3 5h2v1h-2zM6 5h1v1h-1z"/>
+<path fill="#2c6a52" d="M2 3h1v1h-1zM1 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM5 5h1v1h-1zM0 6h1v1h-1z"/>
+<path fill="#2d4456" d="M1 6h5v1h-5z"/>
+<path fill="#56d0f0" d="M0 7h2v1h-2zM3 7h3v1h-3zM7 7h1v1h-1z"/>
+<path fill="#2a86b0" d="M2 7h1v1h-1zM6 7h1v1h-1z"/>
+</g>
+</svg>

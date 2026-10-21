@@ -8,6 +8,7 @@
   "scripts": {
     "typecheck": "tsc --project tsconfig.json",
     "test:telemetry": "node scripts/send-test-telemetry.ts",
+    "brand": "node scripts/build-brand.ts",
     "build": "npm run typecheck"
   },
   "dependencies": {
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@netlify/functions": "^6.0.2",
     "@types/node": "^26.6.5",
+    "opentype.js": "^2.0.0",
     "typescript": "^7.0.2"
   }
 }

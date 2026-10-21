@@ -1,0 +1,17 @@
+{
+  "image": "growth-sprite@1x.png",
+  "frameWidth": 8,
+  "frameHeight": 8,
+  "frames": 7,
+  "durationsMs": [
+    500,
+    180,
+    180,
+    180,
+    180,
+    180,
+    1500
+  ],
+  "loop": false,
+  "note": "Frames run left to right. Scale with nearest-neighbour filtering only."
+}
