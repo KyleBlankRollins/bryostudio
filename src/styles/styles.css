@@ -88,18 +88,37 @@ a:hover {
   padding: 0.75rem var(--gutter) 1.1rem;
 }
 
-/* a thin stream running under the header */
+/* Pixel water: rows of 4 px cells (the header Tuft's size), river with the
+   odd ripple. Each row repeats on its own period so the rows rarely line up. */
+:root {
+  --water-a: repeating-linear-gradient(90deg,
+    var(--mark-river) 0 36px, var(--mark-ripple) 36px 40px,
+    var(--mark-river) 40px 64px, var(--mark-ripple) 64px 72px,
+    var(--mark-river) 72px 116px, var(--mark-ripple) 116px 120px);
+  --water-b: repeating-linear-gradient(90deg,
+    var(--mark-river) 0 8px, var(--mark-ripple) 8px 16px,
+    var(--mark-river) 16px 52px, var(--mark-ripple) 52px 56px,
+    var(--mark-river) 56px 88px, var(--mark-ripple) 88px 92px,
+    var(--mark-river) 92px 136px);
+  /* the surface: water with gaps, a ragged top edge */
+  --water-top: repeating-linear-gradient(90deg,
+    var(--mark-river) 0 44px, transparent 44px 56px,
+    var(--mark-river) 56px 76px, var(--mark-ripple) 76px 80px,
+    var(--mark-river) 80px 100px, transparent 100px 108px,
+    var(--mark-river) 108px 148px, transparent 148px 168px);
+}
+
+/* two rows of water under the header */
 .site-header::after {
   content: "";
   position: absolute;
   left: var(--gutter);
   right: var(--gutter);
   bottom: 0;
-  height: 10px;
-  background: var(--mark-river);
-  opacity: 0.55;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M0 5c10-4 20-4 30 0s20 4 30 0 20-4 30 0 20 4 30 0' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 10px;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M0 5c10-4 20-4 30 0s20 4 30 0 20-4 30 0 20 4 30 0' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 10px;
+  height: 8px;
+  background:
+    var(--water-a) 0 0 / 100% 4px no-repeat,
+    var(--water-b) 0 4px / 100% 4px no-repeat;
 }
 
 .brand {
@@ -407,18 +426,19 @@ a:hover {
   text-align: center;
 }
 
-/* a wider, slower stream above the footer */
+/* three rows of water above the footer, the full width of the window:
+   a ragged surface, then two full rows */
 .site-footer::before {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  height: 18px;
-  background: var(--mark-river);
-  opacity: 0.4;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M0 6q25-5 50 0t50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M-25 13q25 4 50 0t50 0 50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") repeat-x 0 0 / 200px 18px;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M0 6q25-5 50 0t50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M-25 13q25 4 50 0t50 0 50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") repeat-x 0 0 / 200px 18px;
+  height: 12px;
+  background:
+    var(--water-top) 0 0 / 100% 4px no-repeat,
+    var(--water-a) 0 4px / 100% 4px no-repeat,
+    var(--water-b) 0 8px / 100% 4px no-repeat;
 }
 
 .site-footer a {

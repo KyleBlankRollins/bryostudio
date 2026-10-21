@@ -187,4 +187,4 @@ text, links or focus ring fall below WCAG AA contrast.
 | `--river`      | link hover, notes, status                       |
 | `--focus`      | the keyboard focus ring                         |
 | `--moss-soft`, `--river-soft` | table head, tags, note box (derived) |
-| `--mark-*`     | the marks' cells, and the wave decoration       |
+| `--mark-*`     | the marks' cells, and the pixel water under the header and above the footer |

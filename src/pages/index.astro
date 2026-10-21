@@ -3,11 +3,18 @@ import Base from "../layouts/Base.astro";
 import Scenes from "../components/Scenes.astro";
 import "../styles/home.css";
 ---
-<Base description="Bryo Studio is a small, one-person studio making games, mobile apps and other software." wide>
+
+<Base
+  description="Bryo Studio is a small, one-person studio making games, mobile apps and other software."
+  wide
+>
   <section class="home-hero">
-    <p class="eyebrow">Bryo Studio</p>
     <h1>Small software, grown slowly.</h1>
-    <p class="lede">One person making games, mobile apps and other software. Named for bryophytes, the mosses that grow quietly on stones by rivers.</p>
+    <p class="lede">
+      One person making games, mobile apps and other software. Named
+      for bryophytes, the mosses that grow quietly on stones by
+      rivers.
+    </p>
   </section>
 
   <div class="bank">
@@ -18,19 +25,32 @@ import "../styles/home.css";
     <article>
       <p class="status">Coming soon to Android</p>
       <h3>Pizza Ambulance</h3>
-      <p>Ride a bicycle across a hilly town with a tower of pizzas on the back. Get them there hot, and get them there whole.</p>
-      <p><a class="button" href="/pizza-ambulance/">About the game</a></p>
+      <p>
+        Ride a bicycle across a hilly town with a tower of pizzas on
+        the back. Get them there hot, and get them there whole.
+      </p>
+      <p>
+        <a class="button" href="/pizza-ambulance/">About the game</a>
+      </p>
     </article>
     <article>
       <p class="status">Free and open source</p>
       <h3>Ascribe</h3>
-      <p>Documentation written as code and checked like code: Markdown pages, checked links and examples, and a website from the same files.</p>
+      <p>
+        Documentation written as code and checked like code: Markdown
+        pages, checked links and examples, and a website from the same
+        files.
+      </p>
       <p><a class="button" href="/ascribe/">About Ascribe</a></p>
     </article>
     <article>
       <p class="status">Say hello</p>
       <h3>Write in</h3>
-      <p>Questions, bug reports or just a kind word: <a href="mailto:hello@bryostudio.com">hello@bryostudio.com</a>.</p>
+      <p>
+        Questions, bug reports or just a kind word: <a
+          href="mailto:hello@bryostudio.com">hello@bryostudio.com</a
+        >.
+      </p>
     </article>
   </div>
   <Scenes />
