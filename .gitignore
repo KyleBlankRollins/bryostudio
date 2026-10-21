@@ -1,3 +1,4 @@
 screenshots/
 .netlify/
 node_modules/
+*~lock~
