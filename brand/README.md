@@ -86,3 +86,14 @@ something needs them:
 DejaVu Sans Mono is free to use, embed and redistribute (Bitstream Vera
 licence, see `fonts/LICENSE-DejaVu`). It is from the official 2.37 release,
 github.com/dejavu-fonts/dejavu-fonts.
+
+The site serves only the bold weight, cut down to Latin text and punctuation
+as `src/fonts/dejavu-sans-mono-bold-latin.woff2` (16 KB instead of 332 KB). To
+cut it again, with fontTools and brotli installed (`pip install fonttools brotli`):
+
+```
+pyftsubset brand/fonts/DejaVuSansMono-Bold.ttf \
+  --unicodes="U+0020-007E,U+00A0-00FF,U+2010-2014,U+2018-201F,U+2026,U+20AC" \
+  --layout-features='*' --flavor=woff2 \
+  --output-file=src/fonts/dejavu-sans-mono-bold-latin.woff2
+```

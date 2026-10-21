@@ -22,7 +22,8 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    # script-src 'self' is for theme.js, the light/dark toggle: the only script.
+    # script-src 'self' is for the site's own two scripts: theme.js (the
+    # light/dark toggle) and the home page's riverbank.
     Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'"
 
 # HTML: always check for a fresh copy.

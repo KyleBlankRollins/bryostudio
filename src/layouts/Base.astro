@@ -9,9 +9,10 @@ interface Props {
   title?: string; // without " · Bryo Studio"; leave out on the home page
   description: string;
   noindex?: boolean; // keep the page out of search results (and the sitemap)
+  wide?: boolean; // main runs wider than the reading column, for its own layout
 }
 
-const { title, description, noindex = false } = Astro.props;
+const { title, description, noindex = false, wide = false } = Astro.props;
 const fullTitle = title ? `${title} · Bryo Studio` : "Bryo Studio";
 const path = Astro.url.pathname;
 const canonical = new URL(path, Astro.site);
@@ -50,7 +51,7 @@ const nav = [
       ))}
     </nav>
   </header>
-  <main id="main" class="page">
+  <main id="main" class:list={["page", { "page-wide": wide }]}>
     <slot />
   </main>
   <footer class="site-footer">

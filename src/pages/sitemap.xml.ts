@@ -1,8 +1,9 @@
-// The sitemap, built from the pages themselves: every page but the 404.
+// The sitemap, built from the pages themselves: every page but the 404 and
+// the lab's experiments.
 import type { APIRoute } from "astro";
 
 const paths = Object.keys(import.meta.glob("./**/*.{astro,md}"))
-  .filter((file) => !file.endsWith("/404.astro"))
+  .filter((file) => !file.endsWith("/404.astro") && !file.startsWith("./lab/"))
   .map((file) => file.slice(1).replace(/(index)?\.(astro|md)$/, "").replace(/([^/])$/, "$1/"))
   .sort();
 

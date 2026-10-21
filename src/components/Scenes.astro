@@ -1,0 +1,11 @@
+---
+// Starts the scene named by each <canvas data-scene="…"> on the page.
+---
+<script>
+  import * as scenes from "../scripts/scenes.ts";
+
+  const all: Record<string, (canvas: HTMLCanvasElement) => void> = scenes;
+  for (const canvas of document.querySelectorAll<HTMLCanvasElement>("canvas[data-scene]")) {
+    all[canvas.dataset.scene ?? ""]?.(canvas);
+  }
+</script>
