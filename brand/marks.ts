@@ -73,16 +73,21 @@ export const grown: Grid = [
 export const growthDurationsMs = [500, 180, 180, 180, 180, 180, 1500];
 
 export function growthFrames(): Grid[] {
-  const steps = growthDurationsMs.length - 1;
+  return growth(tuft, growthDurationsMs.length - 1, [2, 4]);
+}
+
+// Any mark growing from its stone in the given number of steps; the frames
+// run from bare stone (plus a landing spore at [y, x], if given) to the mark.
+export function growth(grid: Grid, steps: number, spore?: [number, number]): Grid[] {
   const moss = (ch: string | undefined): boolean => ch !== undefined && "LMD".includes(ch);
-  const at = (y: number, x: number): string | undefined => tuft[y]?.[x];
+  const at = (y: number, x: number): string | undefined => grid[y]?.[x];
   const frames: Grid[] = [];
   for (let k = 0; k <= steps; k++) {
     // Each column grows the same share of its height, bottom first.
     const grownCells = new Set<string>();
-    for (let x = 0; x < tuft[0]!.length; x++) {
+    for (let x = 0; x < grid[0]!.length; x++) {
       const column: number[] = [];
-      for (let y = tuft.length - 1; y >= 0; y--) if (moss(at(y, x))) column.push(y);
+      for (let y = grid.length - 1; y >= 0; y--) if (moss(at(y, x))) column.push(y);
       column.slice(0, Math.ceil((column.length * k) / steps)).forEach((y) => grownCells.add(`${y},${x}`));
     }
     // Drop growth with nothing under it or beside it.
@@ -97,14 +102,14 @@ export function growthFrames(): Grid[] {
         }
       }
     }
-    const out = tuft.map((row, y) => [...row].map((ch, x) => (moss(ch) ? (grownCells.has(`${y},${x}`) ? ch : ".") : ch)));
+    const out = grid.map((row, y) => [...row].map((ch, x) => (moss(ch) ? (grownCells.has(`${y},${x}`) ? ch : ".") : ch)));
     if (k < steps) {
       for (let x = 0; x < out[0]!.length; x++) {
         const tip = out.findIndex((row) => moss(row[x]));
         if (tip >= 0) out[tip]![x] = "L"; // the newest growth
       }
     }
-    if (k === 0) out[2]![4] = "L"; // the spore, landing
+    if (k === 0 && spore) out[spore[0]]![spore[1]] = "L"; // the spore, landing
     frames.push(out.map((row) => row.join("")));
   }
   return frames;
