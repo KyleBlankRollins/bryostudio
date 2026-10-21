@@ -1,44 +1,11 @@
 /* Bryo Studio: the one stylesheet for every page.
-   Mobile first. Colours are custom properties; dark mode swaps them. */
+   Mobile first. Colours come from tokens.css (generated from brand/themes.ts),
+   which every page loads first. */
 
 :root {
-  --bg: #f6f2e8;          /* warm cream */
-  --surface: #fffcf4;     /* lighter cream for cards */
-  --text: #1e2a23;        /* deep moss ink */
-  --muted: #4c5751;       /* stone */
-  --moss: #3b6634;        /* moss green, links and accents */
-  --moss-soft: #dfe8d2;   /* pale moss wash */
-  --moss-mark: #4f8540;   /* the mark's moss */
-  --river: #22607f;       /* river blue */
-  --river-soft: #d8e8ee;  /* pale river wash */
-  --river-mark: #3a86ad;  /* the mark's stream */
-  --stone: #8b928d;       /* stone grey, decoration only */
-  --border: #d8d1c0;
-  --focus: #b4530f;       /* warm amber focus ring */
-
   --gutter: 1.25rem;
   --measure: 65ch;
   --radius: 14px;
-
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #131a16;
-    --surface: #1b2420;
-    --text: #e9e5d9;
-    --muted: #b3bab1;
-    --moss: #9fca8b;
-    --moss-soft: #22301f;
-    --moss-mark: #7fb36a;
-    --river: #86c3e0;
-    --river-soft: #18303b;
-    --river-mark: #5fa9d1;
-    --stone: #6f7771;
-    --border: #2f3b35;
-    --focus: #f0a35e;
-  }
 }
 
 *,
@@ -129,7 +96,7 @@ a:hover {
   right: var(--gutter);
   bottom: 0;
   height: 10px;
-  background: var(--river-mark);
+  background: var(--mark-river);
   opacity: 0.55;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M0 5c10-4 20-4 30 0s20 4 30 0 20-4 30 0 20 4 30 0' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 10px;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M0 5c10-4 20-4 30 0s20 4 30 0 20-4 30 0 20 4 30 0' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 10px;
@@ -151,20 +118,11 @@ a:hover {
   color: var(--text);
 }
 
+/* The Tuft, 4 px a cell; its cells are coloured by tokens.css. */
 .brand svg {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   flex: none;
-}
-
-.mark-moss { fill: var(--moss-mark); }
-.mark-moss-dark { fill: var(--moss); }
-.mark-stone { fill: var(--stone); }
-.mark-stream {
-  fill: none;
-  stroke: var(--river-mark);
-  stroke-width: 3;
-  stroke-linecap: round;
 }
 
 .site-header nav {
@@ -172,6 +130,32 @@ a:hover {
   flex-wrap: wrap;
   gap: 0 0.25rem;
   margin: 0 -0.6rem;
+}
+
+/* Light/dark toggle, added by theme.js (so it only shows when it can work). */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 0;
+  background: none;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--moss);
+  border-color: var(--moss);
+}
+
+.theme-toggle svg {
+  width: 21px;
+  height: 21px;
 }
 
 .site-header nav a {
@@ -363,7 +347,7 @@ a:hover {
   position: absolute;
   inset: 0 0 auto 0;
   height: 6px;
-  background: linear-gradient(90deg, var(--moss-mark), var(--river-mark));
+  background: linear-gradient(90deg, var(--mark-moss), var(--mark-river));
 }
 
 .card h2,
@@ -431,7 +415,7 @@ a:hover {
   right: 0;
   top: 0;
   height: 18px;
-  background: var(--river-mark);
+  background: var(--mark-river);
   opacity: 0.4;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M0 6q25-5 50 0t50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M-25 13q25 4 50 0t50 0 50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") repeat-x 0 0 / 200px 18px;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M0 6q25-5 50 0t50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M-25 13q25 4 50 0t50 0 50 0 50 0 50 0' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") repeat-x 0 0 / 200px 18px;
@@ -450,6 +434,10 @@ a:hover {
 @media (min-width: 48rem) {
   :root {
     --gutter: 2rem;
+  }
+
+  .theme-toggle {
+    order: 1;
   }
 
   .page {
@@ -471,7 +459,8 @@ a:hover {
 @media print {
   .site-header::after,
   .site-footer::before,
-  .skip-link {
+  .skip-link,
+  .theme-toggle {
     display: none;
   }
 }
