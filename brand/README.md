@@ -10,6 +10,7 @@ marks came from.
 marks.ts          the grids (Tuft, Mound, Grown, Growth); cells are colour roles
 themes.ts         Daylight, Night and Deep River: mark colours and interface colours
 colour.ts         contrast and OKLab mixing, for the build
+draw.ts           grids to SVG, shared by the build and the site
 fonts/            DejaVu Sans Mono 2.37, regular and bold, and its licence
 dist/             generated; replaced in full by every build
   <theme>/        daylight/, night/, deep-river/, each with:
@@ -21,8 +22,10 @@ dist/             generated; replaced in full by every build
                   setting, and tuft-inline.svg, coloured by the page's CSS
 ```
 
-The build also refreshes the site's copies: `site/tokens.css`, the favicons
-(the `.ico` and touch icon in Night) and the Tuft in every page's header.
+The build also refreshes the site's copies: `src/styles/tokens.css` and the
+favicons in `public/` (the `.ico` and touch icon in Night). The header's Tuft
+is drawn from `marks.ts` by `src/components/Tuft.astro` whenever the site
+builds, using `draw.ts`.
 
 ## The marks
 

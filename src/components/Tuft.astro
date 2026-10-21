@@ -1,0 +1,13 @@
+---
+// The Tuft, drawn from its grid in brand/marks.ts and coloured by tokens.css,
+// so it follows the theme. Decorative: the text beside it names the studio.
+import { inlineSvg } from "../../brand/draw.ts";
+import { tuft } from "../../brand/marks.ts";
+
+interface Props {
+  size?: number; // px wide; a multiple of 8 keeps every cell whole pixels
+}
+
+const { size = 32 } = Astro.props;
+---
+<Fragment set:html={inlineSvg(tuft, size)} />

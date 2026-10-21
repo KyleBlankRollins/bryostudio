@@ -1,0 +1,18 @@
+---
+// For Markdown pages: their frontmatter (title, description) becomes the
+// shell's props. Set it with `layout:` in the page's frontmatter.
+import Base from "./Base.astro";
+
+interface Props {
+  frontmatter: {
+    title?: string;
+    description: string;
+    noindex?: boolean;
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+<Base {...frontmatter}>
+  <slot />
+</Base>

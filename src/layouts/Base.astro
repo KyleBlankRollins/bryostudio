@@ -1,0 +1,60 @@
+---
+// The shell of every page: head, header, footer. A page passes its title and
+// description and puts its content in the slot, which becomes <main>.
+import Tuft from "../components/Tuft.astro";
+import "../styles/tokens.css";
+import "../styles/styles.css";
+
+interface Props {
+  title?: string; // without " · Bryo Studio"; leave out on the home page
+  description: string;
+  noindex?: boolean; // keep the page out of search results (and the sitemap)
+}
+
+const { title, description, noindex = false } = Astro.props;
+const fullTitle = title ? `${title} · Bryo Studio` : "Bryo Studio";
+const path = Astro.url.pathname;
+const canonical = new URL(path, Astro.site);
+
+// The section a page belongs to is marked current: a privacy policy is under Privacy.
+const nav = [
+  { href: "/pizza-ambulance/", label: "Pizza Ambulance" },
+  { href: "/ascribe/", label: "Ascribe" },
+  { href: "/privacy/", label: "Privacy" },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  {noindex && <meta name="robots" content="noindex">}
+  <script is:inline src="/theme.js"></script>
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  {!noindex && <link rel="canonical" href={canonical}>}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <Tuft />
+      Bryo Studio
+    </a>
+    <nav aria-label="Main">
+      {nav.map(({ href, label }) => (
+        <a href={href} aria-current={path.startsWith(href) ? "page" : undefined}>{label}</a>
+      ))}
+    </nav>
+  </header>
+  <main id="main" class="page">
+    <slot />
+  </main>
+  <footer class="site-footer">
+    <p>© 2026 Bryo Studio · <a href="/privacy/">Privacy</a> · <a href="mailto:hello@bryostudio.com">hello@bryostudio.com</a></p>
+  </footer>
+</body>
+</html>

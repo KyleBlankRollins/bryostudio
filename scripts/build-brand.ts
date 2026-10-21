@@ -8,18 +8,18 @@
 // low in contrast to read. Rasters are only ever drawn at whole pixels per
 // cell, so the edges stay sharp; SVGs are drawn in cell units.
 
-import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { crc32, deflateSync } from "node:zlib";
 import opentype from "opentype.js";
 import { contrast, mix } from "../brand/colour.ts";
+import { cells, classes, fills, gappedCells, inlineSvg, num, solidCells, width, type Paint } from "../brand/draw.ts";
 import { grown, growthDurationsMs, growthFrames, mound, tuft, type Grid, type Palette, type Role } from "../brand/marks.ts";
 import { daylight, night, themes, type Theme } from "../brand/themes.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "brand", "dist");
-const site = join(root, "site");
 
 // ---------- themes ----------
 
@@ -81,28 +81,6 @@ function checkContrast(theme: Theme): string[] {
 
 // ---------- grids ----------
 
-interface Cell {
-  x: number;
-  y: number;
-  role: Role;
-}
-
-function width(grid: Grid): number {
-  return Math.max(...grid.map((row) => row.length));
-}
-
-function cells(grid: Grid): Cell[] {
-  const out: Cell[] = [];
-  grid.forEach((row, y) =>
-    [...row].forEach((ch, x) => {
-      if (ch === ".") return;
-      if (!(ch in roleVars)) throw new Error(`unknown cell "${ch}" at ${x},${y}`);
-      out.push({ x, y, role: ch as Role });
-    }),
-  );
-  return out;
-}
-
 function checkGrid(name: string, grid: Grid): void {
   const w = grid[0]?.length ?? 0;
   if (w === 0 || grid.some((row) => row.length !== w)) throw new Error(`${name}: rows must all be one length`);
@@ -110,47 +88,6 @@ function checkGrid(name: string, grid: Grid): void {
 }
 
 // ---------- SVG ----------
-
-const num = (v: number): string => String(+v.toFixed(3));
-
-// How a role is painted: a fixed colour, or a class the page's CSS colours.
-type Paint = (role: Role) => string;
-const fills = (palette: Palette): Paint => (role) => `fill="${palette[role]}"`;
-const classes: Paint = (role) => `class="cell-${role}"`;
-
-// Solid cells, the default: each run of one role along a row is one
-// rectangle, and each paint is one path.
-function solidCells(grid: Grid, paint: Paint, ox = 0, oy = 0, scale = 1): string {
-  const runs = new Map<string, string[]>();
-  grid.forEach((row, y) => {
-    for (let x = 0; x < row.length; ) {
-      const ch = row[x]!;
-      let end = x + 1;
-      while (row[end] === ch) end++;
-      if (ch !== ".") {
-        const key = paint(ch as Role);
-        const w = (end - x) * scale;
-        const d = `M${num(ox + x * scale)} ${num(oy + y * scale)}h${num(w)}v${num(scale)}h${num(-w)}z`;
-        runs.set(key, [...(runs.get(key) ?? []), d]);
-      }
-      x = end;
-    }
-  });
-  return [...runs].map(([key, d]) => `<path ${key} d="${d.join("")}"/>`).join("\n");
-}
-
-// Gapped cells, for large uses only: each cell a little apart, its corners
-// slightly rounded, as on the design boards.
-function gappedCells(grid: Grid, paint: Paint): string {
-  const gap = 0.07, side = 1 - 2 * gap, radius = side * 0.16;
-  const groups = new Map<string, string[]>();
-  for (const { x, y, role } of cells(grid)) {
-    const rect = `<rect x="${num(x + gap)}" y="${num(y + gap)}" width="${num(side)}" height="${num(side)}" rx="${num(radius)}"/>`;
-    const key = paint(role);
-    groups.set(key, [...(groups.get(key) ?? []), rect]);
-  }
-  return [...groups].map(([key, rects]) => `<g ${key}>${rects.join("")}</g>`).join("\n");
-}
 
 // pxPerUnit sets the default display size; CSS width and height override it.
 function svg(w: number, h: number, body: string, pxPerUnit: number, crisp: boolean): string {
@@ -403,21 +340,14 @@ const adaptiveStyle = [
 const adaptiveFavicon = svg(width(tuft), tuft.length, `${adaptiveStyle}\n${solidCells(tuft, classes)}`, 4, true);
 write(join(dist, "web", "favicon.svg"), adaptiveFavicon);
 
-const inlineTuft = `<svg viewBox="0 0 ${width(tuft)} ${tuft.length}" width="32" height="32" shape-rendering="crispEdges" aria-hidden="true" focusable="false">${solidCells(tuft, classes).replace(/\n/g, "")}</svg>`;
-write(join(dist, "web", "tuft-inline.svg"), inlineTuft + "\n");
+write(join(dist, "web", "tuft-inline.svg"), inlineSvg(tuft, 32) + "\n");
 
-// The site's copies. The header mark sits between <!-- brand:tuft --> markers
-// in every page and is replaced in place.
-write(join(site, "tokens.css"), tokensCss);
-write(join(site, "favicon.svg"), adaptiveFavicon);
-write(join(site, "favicon.ico"), ico([2, 4, 6].map((n) => raster(tuft, night.mark, n))));
-write(join(site, "apple-touch-icon.png"), png(raster(tuft, night.mark, 18, 18, night.ui.bg)));
-const pages = (readdirSync(site, { recursive: true }) as string[]).filter((p) => p.endsWith(".html"));
-for (const page of pages) {
-  const file = join(site, page), html = readFileSync(file, "utf8");
-  const updated = html.replace(/<!-- brand:tuft -->[\s\S]*?<!-- \/brand:tuft -->/g, `<!-- brand:tuft -->${inlineTuft}<!-- /brand:tuft -->`);
-  if (updated !== html) write(file, updated);
-}
+// The site's copies: the tokens for its stylesheet, and the favicons it
+// serves as they are. (The header's Tuft is drawn by src/components/Tuft.astro.)
+write(join(root, "src", "styles", "tokens.css"), tokensCss);
+write(join(root, "public", "favicon.svg"), adaptiveFavicon);
+write(join(root, "public", "favicon.ico"), ico([2, 4, 6].map((n) => raster(tuft, night.mark, n))));
+write(join(root, "public", "apple-touch-icon.png"), png(raster(tuft, night.mark, 18, 18, night.ui.bg)));
 
 console.log(written.join("\n"));
 console.log(`${written.length} files written`);

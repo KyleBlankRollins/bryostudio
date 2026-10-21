@@ -3,20 +3,24 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22.18"
+    "node": ">=22.22"
   },
   "scripts": {
+    "dev": "astro dev",
+    "preview": "astro preview",
     "typecheck": "tsc --project tsconfig.json",
     "test:telemetry": "node scripts/send-test-telemetry.ts",
     "brand": "node scripts/build-brand.ts",
-    "build": "npm run typecheck"
+    "build": "npm run typecheck && astro build"
   },
   "dependencies": {
     "mongodb": "^7.7.0"
   },
   "devDependencies": {
+    "@astrojs/markdown-satteri": "^0.4.4",
     "@netlify/functions": "^6.0.2",
     "@types/node": "^26.6.5",
+    "astro": "^7.4.1",
     "opentype.js": "^2.0.0",
     "typescript": "^7.0.2"
   }

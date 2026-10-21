@@ -2,3 +2,5 @@ screenshots/
 .netlify/
 node_modules/
 *~lock~
+/dist/
+.astro/
