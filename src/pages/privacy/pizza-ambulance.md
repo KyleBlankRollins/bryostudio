@@ -6,7 +6,7 @@ description: "What Pizza Ambulance records about play, why, where it goes, how l
 
 # Pizza Ambulance privacy policy
 
-<p class="updated">Effective 17 October 2026. Last updated: 24 October 2026</p>
+<p class="updated">Effective 17 October 2026. Last updated: 25 October 2026</p>
 
 <div class="note">
   <p>In short: Pizza Ambulance records how the game is played and how well it runs on your phone, so we can tune the difficulty and fix problems. It never asks for your name, email, contacts, location, photos or an account. It has no ads, and we never sell your data or share it for advertising.</p>
@@ -69,6 +69,8 @@ The game writes a short record for each delivery, each stretch of riding around,
 - How the delivery went: time taken, distance, speed, jumps, crashes, bumps, slices lost and why, how the pizzas arrived, stars and medals earned.
 - Where your bike went _inside the game’s made-up town_: on road or off it, shortcuts taken, and positions on the game map where slices fell or the bike was put back on the road. This is never your real-world location.
 - Use of the in-game phone (which pages, for how long), tricks, and the in-game money you earned and spent. All money in the game is pretend: there are no real-money purchases.
+- Which animal companion rode with you, if any, and when you changed companion before a ride. How many slices it could catch in that delivery and which of its in-game upgrades you had, how many catches it had left at the end, and each slice it caught or missed: when in the ride, which box, how the slice fell, and why a catch was missed (no catches left, or out of reach).
+- Which of the game’s one-off tips and hints were shown to you.
 
 ### How the game ran
 
