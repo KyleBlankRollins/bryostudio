@@ -6,7 +6,7 @@ description: "What Pizza Ambulance records about play, why, where it goes, how l
 
 # Pizza Ambulance privacy policy
 
-<p class="updated">Effective and last updated: 17 October 2026</p>
+<p class="updated">Effective 17 October 2026. Last updated: 24 October 2026</p>
 
 <div class="note">
   <p>In short: Pizza Ambulance records how the game is played and how well it runs on your phone, so we can tune the difficulty and fix problems. It never asks for your name, email, contacts, location, photos or an account. It has no ads, and we never sell your data or share it for advertising.</p>
@@ -32,7 +32,7 @@ This policy covers the Android game Pizza Ambulance, made by Bryo Studio (“we�
       <td>Yes, unless you turn off Share play data (see below)</td>
     </tr>
     <tr>
-      <td>Performance data: how smoothly the game ran</td>
+      <td>Performance data: how smoothly the game ran, and how warm the phone got</td>
       <td>Find and fix slow or broken spots</td>
       <td>Yes, unless you turn off Share play data</td>
     </tr>
@@ -72,7 +72,8 @@ The game writes a short record for each delivery, each stretch of riding around,
 
 ### How the game ran
 
-- Frame times (how smoothly the game drew each moment), and how long the game was paused or in the background.
+- Frame times (how smoothly the game drew each moment), how much work each frame took, and how long the game was paused or in the background.
+- On Android, the phone’s heat level as Android reports it (a level such as “none”, “light” or “moderate”, never a temperature reading), so we can tell when the game makes a phone run hot.
 
 ### About the phone
 
