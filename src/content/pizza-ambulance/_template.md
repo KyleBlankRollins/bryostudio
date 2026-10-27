@@ -12,10 +12,7 @@ title: "The Harbour"
 summary: "One plain sentence about the release, shown in the lists of releases."
 ---
 
-A paragraph or two on what this release is about, in the game's short, dry
-voice, before the tool's sections. Play's box holds 500 characters; this is
-where the rest goes. Rewrite each item in players' words, drop what they
-wouldn't notice, and say more about the ones that matter.
+A paragraph or two on what this release is about, in the game's short, dry voice, before the tool's sections. Play's box holds 500 characters; this is where the rest goes. Rewrite each item in players' words, drop what they wouldn't notice, and say more about the ones that matter.
 
 ## New
 
