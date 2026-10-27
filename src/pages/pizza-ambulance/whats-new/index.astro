@@ -1,0 +1,25 @@
+---
+// Every release of Pizza Ambulance, newest first, each linking to its own
+// page. The releases are Markdown files in src/content/pizza-ambulance/.
+import Base from "../../../layouts/Base.astro";
+import { pizzaAmbulanceReleases, releaseDate, releasePath } from "../../../lib/releases.ts";
+
+const releases = await pizzaAmbulanceReleases();
+---
+<Base title="What's new in Pizza Ambulance" description="What changed in each release of Pizza Ambulance, and why.">
+  <p class="eyebrow"><a href="/pizza-ambulance/">Pizza Ambulance</a></p>
+  <h1>What's new</h1>
+  <p class="lede">What changed in each release, and why. The store has room for a few lines; these pages have room for the rest.</p>
+
+  {releases.length === 0 && (
+    <p>Nothing yet. Pizza Ambulance is still in development, and its first release will be written up here when it reaches Google Play.</p>
+  )}
+
+  {releases.map(({ data }) => (
+    <article class="card">
+      <p class="status"><time datetime={data.date.toISOString()}>{releaseDate(data.date)}</time></p>
+      <h2><a href={releasePath(data.version)}>Version {data.version}{data.title && `: ${data.title}`}</a></h2>
+      <p>{data.summary}</p>
+    </article>
+  ))}
+</Base>

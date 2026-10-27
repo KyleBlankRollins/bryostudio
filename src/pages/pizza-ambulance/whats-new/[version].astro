@@ -1,0 +1,33 @@
+---
+// One release of Pizza Ambulance, at /pizza-ambulance/whats-new/<version>/:
+// its notes (New, Fixed, Smoother, as release_notes.ps1 heads them) and
+// whatever was written around them, with links to the releases either side.
+import { render } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import { pizzaAmbulanceReleases, releaseDate, releasePath } from "../../../lib/releases.ts";
+
+export async function getStaticPaths() {
+  const releases = await pizzaAmbulanceReleases();
+  return releases.map((release, i) => ({
+    params: { version: release.data.version },
+    props: { release, newer: releases[i - 1]?.data, older: releases[i + 1]?.data },
+  }));
+}
+
+const { release, newer, older } = Astro.props;
+const { version, title, summary, date } = release.data;
+const { Content } = await render(release);
+---
+<Base title={`Pizza Ambulance ${version}`} description={summary ?? `What changed in Pizza Ambulance ${version}.`}>
+  <p class="eyebrow"><a href="/pizza-ambulance/whats-new/">What's new in Pizza Ambulance</a></p>
+  <h1>Version {version}{title && `: ${title}`}</h1>
+  <p class="updated"><time datetime={date.toISOString()}>{releaseDate(date)}</time></p>
+  <Content />
+
+  {(newer || older) && (
+    <nav class="release-nav" aria-label="Other releases">
+      {older && <a href={releasePath(older.version)} rel="prev">Older: version {older.version}</a>}
+      {newer && <a href={releasePath(newer.version)} rel="next">Newer: version {newer.version}</a>}
+    </nav>
+  )}
+</Base>

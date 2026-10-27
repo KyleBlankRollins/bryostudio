@@ -1,5 +1,8 @@
 ---
-import Base from "../layouts/Base.astro";
+import Base from "../../layouts/Base.astro";
+import { pizzaAmbulanceReleases, releaseDate, releasePath } from "../../lib/releases.ts";
+
+const [latest] = await pizzaAmbulanceReleases();
 ---
 <Base title="Pizza Ambulance" description="Pizza Ambulance: deliver stacked pizzas by bicycle across an open, hilly town. Coming to Android.">
   <p class="eyebrow">A game by Bryo Studio</p>
@@ -21,6 +24,17 @@ import Base from "../layouts/Base.astro";
 
   <h2>Coming to Android</h2>
   <p>Pizza Ambulance is in development and coming to Android first. This page will link to Google Play when it is out.</p>
+
+  <h2>What's new</h2>
+  {latest ? (
+    <div class="card">
+      <p class="status">Version {latest.data.version} · {releaseDate(latest.data.date)}</p>
+      <p>{latest.data.summary}</p>
+      <p><a href={releasePath(latest.data.version)}>Read about version {latest.data.version}</a>, or see <a href="/pizza-ambulance/whats-new/">every release</a>.</p>
+    </div>
+  ) : (
+    <p>Every release will be written up on the <a href="/pizza-ambulance/whats-new/">What's new</a> page, with more room than the store gives.</p>
+  )}
 
   <h2>Privacy</h2>
   <p>Read how the game handles your data in the <a href="/privacy/pizza-ambulance/">Pizza Ambulance privacy policy</a>.</p>

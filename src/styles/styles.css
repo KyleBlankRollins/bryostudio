@@ -410,6 +410,21 @@ a:hover {
   padding-left: 1.4rem;
 }
 
+/* a release's page: links to the releases either side */
+.release-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.release-nav a[rel="next"] {
+  margin-left: auto;
+}
+
 .shot-placeholder {
   /* reserved for screenshots later; hidden until then */
   display: none;

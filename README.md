@@ -33,12 +33,21 @@ src/
     Scenes.astro      starts the pixel scene named by each <canvas data-scene="…">
   pages/
     index.astro       home: the headline, the riverbank, and the work along it
-    pizza-ambulance.astro     the first game's page
+    pizza-ambulance/
+      index.astro     the first game's page, with its latest release
+      whats-new/
+        index.astro   every release, newest first, with its summary
+        [version].astro   one page per release, e.g. /pizza-ambulance/whats-new/0.3.0/
     ascribe.astro     Ascribe's page: what it is, and links to its own site
     privacy/          privacy pages, in Markdown (index, and one per app or tool)
     404.astro         not-found page
-    sitemap.xml.ts    the sitemap, listing every page but the 404 and the lab
+    sitemap.xml.ts    the sitemap, listing every page but the 404 and the lab, and every release
     lab/              page experiments, tried here first (unlinked, noindex; none running now)
+  content/
+    pizza-ambulance/  one Markdown file per release: the game's notes.md, with colour added
+  content.config.ts   the content collections: the releases' frontmatter
+  lib/
+    releases.ts       the releases newest first, their dates and addresses
   scripts/
     pixels.ts         the pixel-scene engine: canvas cells in the theme's colours, slow steps
     scenes.ts         the scenes: the home page's riverbank
@@ -166,6 +175,30 @@ a line. Two small classes for policy pages:
 Other classes in `styles.css` (`.lede`, `.eyebrow`, `.card`, `.status`,
 `.button`, `.makes`) are used on the home and game pages and are optional
 elsewhere.
+
+### Pizza Ambulance's releases
+
+The game repository's `tools/release_notes.ps1` drafts each release's notes
+from its commits. Of the three files it writes, the site takes `notes.md`
+(`notes.json` and `play.txt` stay with the game):
+
+1. Copy `notes.md` to `src/content/pizza-ambulance/<version>.md`, e.g.
+   `0.3.0.md`. Its front matter (`version`, `code`, `date`, `draft: true`)
+   stays as the tool wrote it.
+2. Add the colour: a `summary` (one plain sentence, shown in the lists of
+   releases), a `title` if the release has a name, and a paragraph or two
+   above the sections. Rewrite each item in players' words, drop what they
+   would not notice, take out the tool's draft comment, and say more where it
+   matters. The tool's `## New`, `## Fixed` and `## Smoother` stay as they
+   are.
+3. Set `draft: false`. Drafts never reach the site, and the build refuses a
+   published release with no summary.
+
+Each release gets its own page at `/pizza-ambulance/whats-new/<version>/`,
+with links to the releases either side. The What's New page lists them all,
+newest first, and the game's page shows the latest. Dates show as the studio's
+day (Central time). `src/content/pizza-ambulance/_template.md` shows the whole
+shape.
 
 ## Themes
 

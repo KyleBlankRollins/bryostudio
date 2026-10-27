@@ -4,7 +4,8 @@
   // runs the scripts directly by stripping their types, and Astro builds the
   // site, so only erasable syntax is allowed. .astro files are not checked:
   // astro check needs TypeScript's compiler API, which TypeScript 7 doesn't
-  // have until 7.1.
+  // have until 7.1. .astro/types.d.ts is the content collections' types,
+  // written by astro sync (which npm run typecheck runs first).
   "compilerOptions": {
     "target": "es2023",
     "lib": ["es2023", "dom", "dom.iterable"], // dom: the site's scripts (src/scripts)
@@ -21,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true
   },
-  "include": ["netlify/functions/**/*.ts", "scripts/**/*.ts", "brand/**/*.ts", "src/**/*.ts"]
+  "include": ["netlify/functions/**/*.ts", "scripts/**/*.ts", "brand/**/*.ts", "src/**/*.ts", ".astro/types.d.ts"]
 }
