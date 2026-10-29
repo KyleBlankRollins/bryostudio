@@ -6,7 +6,7 @@ description: "What Pizza Ambulance records about play, why, where it goes, how l
 
 # Pizza Ambulance privacy policy
 
-<p class="updated">Effective 17 October 2026. Last updated: 25 October 2026</p>
+<p class="updated">Effective 17 October 2026. Last updated: 28 October 2026</p>
 
 <div class="note">
   <p>In short: Pizza Ambulance records how the game is played and how well it runs on your phone, so we can tune the difficulty and fix problems. It never asks for your name, email, contacts, location, photos or an account. It has no ads, and we never sell your data or share it for advertising.</p>
@@ -144,6 +144,8 @@ Your progress (in-game money, what you own and wear, your medals, which parts of
 ## Testing builds
 
 People who test the game before release may get builds that record more detailed play data, to help us tune it. That data is of the same kinds described above (no personal details), is handled the same way, and is kept for the same time. Builds we use for our own testing may also note when testing tools inside the game were used.
+
+Test builds shared through Google Play have tester tools (extra in-game money, opening every job, or starting again from a ready-made save). When you use one, the game records which tool it was, when, what it gave (an amount of in-game money or which save), and your in-game money before and after, and marks the rest of that play session as helped by it. Like everything else here, this is sent only while Share play data is on.
 
 ## Children
 
