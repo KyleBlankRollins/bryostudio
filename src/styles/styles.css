@@ -37,6 +37,12 @@ svg {
   max-width: 100%;
 }
 
+/* Astro writes width and height on optimised images; keep their shape when
+   max-width narrows them. */
+img {
+  height: auto;
+}
+
 /* ---------- Links and focus ---------- */
 
 a {
