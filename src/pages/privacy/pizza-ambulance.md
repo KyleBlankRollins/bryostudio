@@ -65,9 +65,9 @@ The game writes a short record for each delivery, each stretch of riding around,
 
 ### How you played
 
-- Which part of town, which orders and jobs, how many pizza boxes you carried, and the difficulty and control settings you chose.
+- Which part of town, which orders and jobs, how many pizza boxes you carried, which vehicle you rode (the bicycle or the scooter), and the difficulty and control settings you chose.
 - How the delivery went: time taken, distance, speed, jumps, crashes, bumps, slices lost and why, how the pizzas arrived, stars and medals earned.
-- Where your bike went _inside the game’s made-up town_: on road or off it, shortcuts taken, and positions on the game map where slices fell or the bike was put back on the road. This is never your real-world location.
+- Where your bike or scooter went _inside the game’s made-up town_: on road or off it, shortcuts taken, and positions on the game map where slices fell or the bike or scooter was put back on the road. This is never your real-world location.
 - Use of the in-game phone (which pages, for how long), tricks, and the in-game money you earned and spent. All money in the game is pretend: there are no real-money purchases.
 - Which animal companion rode with you, if any, and when you changed companion before a ride. How many slices it could catch in that delivery and which of its in-game upgrades you had, how many catches it had left at the end, and each slice it caught or missed: when in the ride, which box, how the slice fell, and why a catch was missed (no catches left, or out of reach).
 - What kind of job you rode: written by us, generated, or a special one. For a generated job, its tier and theme, the version of the generator that made it, and whether it was that day’s highlight. For generated and special jobs, the doors it visits, which are made-up addresses in the game’s town. We also note when your medals first open a new tier of generated jobs, and in which part of town.
