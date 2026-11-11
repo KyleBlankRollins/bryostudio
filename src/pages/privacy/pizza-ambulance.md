@@ -6,7 +6,7 @@ description: "What Pizza Ambulance records about play, why, where it goes, how l
 
 # Pizza Ambulance privacy policy
 
-<p class="updated">Effective 17 October 2026. Last updated: 9 November 2026</p>
+<p class="updated">Effective 17 October 2026. Last updated: 10 November 2026</p>
 
 <div class="note">
   <p>In short: Pizza Ambulance records how the game is played and how well it runs on your phone, so we can tune the difficulty and fix problems. It never asks for your name, email, contacts, location, photos or an account. It has no ads, and we never sell your data or share it for advertising.</p>
@@ -74,6 +74,7 @@ The game writes a short record for each delivery, each stretch of riding around,
 - What kind of job you rode: written by us, generated, or a special one. For a generated job, its tier and theme, the version of the generator that made it, and whether it was that day’s highlight. For generated and special jobs, the doors it visits, which are made-up addresses in the game’s town. We also note when your medals first open a new tier of generated jobs, and in which part of town.
 - Which of the game’s one-off tips and hints were shown to you.
 - How you hold the phone: for each delivery and ride, how many times you started steering on the left, in the middle or on the right of the screen. Only those three counts, never where exactly you touched.
+- How often and how long you held the scooter’s handbrake, for each delivery and ride.
 
 ### How the game ran
 
