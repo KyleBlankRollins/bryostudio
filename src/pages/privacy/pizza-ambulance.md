@@ -6,7 +6,7 @@ description: "What Pizza Ambulance records about play, why, where it goes, how l
 
 # Pizza Ambulance privacy policy
 
-<p class="updated">Effective 17 October 2026. Last updated: 10 November 2026</p>
+<p class="updated">Effective 17 October 2026. Last updated: 17 November 2026</p>
 
 <div class="note">
   <p>In short: Pizza Ambulance records how the game is played and how well it runs on your phone, so we can tune the difficulty and fix problems. It never asks for your name, email, contacts, location, photos or an account. It has no ads, and we never sell your data or share it for advertising.</p>
@@ -66,13 +66,19 @@ The game writes a short record for each delivery, each stretch of riding around,
 ### How you played
 
 - Which part of town, which orders and jobs, how many pizza boxes you carried, which vehicle you rode (the bicycle or the scooter), and the difficulty and control settings you chose.
+- When you switched vehicle and where (by the pizzeria or at the bike shop), and when you looked at a vehicle you had not earned yet.
 - How the delivery went: time taken, distance, speed, jumps, crashes, bumps, slices lost and why, how the pizzas arrived, stars and medals earned.
-- Traffic during a delivery: the cars you ran into and the people in the game you knocked, what they cost you in the game’s pretend money, and how long you waited behind cars.
+- The rewards the game gave you: what it was, when, and the medals or job that earned it.
+- Traffic during a delivery: the cars you ran into and the people in the game you knocked, and how long you waited behind cars.
 - Where your bike or scooter went _inside the game’s made-up town_: on road or off it, shortcuts taken, and positions on the game map where slices fell or the bike or scooter was put back on the road. This is never your real-world location.
-- Use of the in-game phone (which pages, for how long), tricks, and the in-game money you earned and spent. All money in the game is pretend: there are no real-money purchases.
+- Use of the in-game phone (which pages, for how long) and tricks. The game has no money and no purchases of any kind.
+- When you open and close the game, how long it was open, and the screen you left from.
+- What the job board showed you (how many jobs, and how many were folded away or locked), which job you tapped first, and how soon.
+- The character you ride and the colors, paint and companion tints you have on. Never a companion’s name: that is your own text.
 - Which animal companion rode with you, if any, and when you changed companion before a ride. How many slices it could catch in that delivery and which of its in-game upgrades you had, how many catches it had left at the end, and each slice it caught or missed: when in the ride, which box, how the slice fell, and why a catch was missed (no catches left, or out of reach).
-- What kind of job you rode: written by us, generated, or a special one. For a generated job, its tier and theme, the version of the generator that made it, and whether it was that day’s highlight. For generated and special jobs, the doors it visits, which are made-up addresses in the game’s town. We also note when your medals first open a new tier of generated jobs, and in which part of town.
+- What kind of job you rode: written by us, generated, a special one, a scooter-only Express job, or a pet rescue. For a generated job, its tier and theme, the version of the generator that made it, and whether it was that day’s highlight. For generated and special jobs, the doors it visits, which are made-up addresses in the game’s town. We also note when your medals first open a new tier of generated jobs, and in which part of town.
 - Which of the game’s one-off tips and hints were shown to you.
+- When the game suggested an easier difficulty after a few tries, and whether you took it.
 - How you hold the phone: for each delivery and ride, how many times you started steering on the left, in the middle or on the right of the screen. Only those three counts, never where exactly you touched.
 - How often and how long you held the scooter’s handbrake, for each delivery and ride.
 
@@ -143,13 +149,13 @@ Depending on where you live, you may have further rights under data protection l
 
 ## What stays on your phone
 
-Your progress (in-game money, what you own and wear, your medals, which parts of town are open) and your settings (controls, difficulty, left-handed layout, sensitivity, vibration, volumes) are stored only on your phone and are never sent to us. The play records waiting to be sent are stored there too. Uninstalling the game removes all of it.
+Your progress (what you own and wear, your medals, which parts of town are open) and your settings (controls, difficulty, left-handed layout, sensitivity, vibration, volumes) are stored only on your phone and are never sent to us. The play records waiting to be sent are stored there too. Uninstalling the game removes all of it.
 
 ## Testing builds
 
 People who test the game before release may get builds that record more detailed play data, to help us tune it. That data is of the same kinds described above (no personal details), is handled the same way, and is kept for the same time. Builds we use for our own testing may also note when testing tools inside the game were used.
 
-Test builds shared through Google Play have tester tools (extra in-game money, opening every job, or starting again from a ready-made save). When you use one, the game records which tool it was, when, what it gave (an amount of in-game money or which save), and your in-game money before and after, and marks the rest of that play session as helped by it. Like everything else here, this is sent only while Share play data is on.
+Test builds shared through Google Play have tester tools (the next reward or every reward, opening every job, or starting again from a ready-made save). When you use one, the game records which tool it was, when, and what it gave (how many rewards or jobs, or which save), and marks the rest of that play session as helped by it. Like everything else here, this is sent only while Share play data is on.
 
 ## Children
 
