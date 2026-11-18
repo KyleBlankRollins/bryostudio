@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- Source for public/og-image.png, the preview image that LinkedIn, Slack,
+     Bluesky and others show when someone shares a link to the site. Daylight
+     colours from src/styles/tokens.css, the Mound and the wordmark from
+     brand/dist/daylight, and the headline in DejaVu Sans Mono Bold, as on the
+     home page. Regenerate with scripts/og-image/render.sh after npm run brand. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: "DejaVu Sans Mono";
+        font-weight: 700;
+        src: url("../../brand/fonts/DejaVuSansMono-Bold.ttf");
+      }
+      @font-face {
+        font-family: "DejaVu Sans Mono";
+        font-weight: 400;
+        src: url("../../brand/fonts/DejaVuSansMono.ttf");
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #eef2e6;
+        color: #14201a;
+      }
+      .card {
+        box-sizing: border-box;
+        width: 1200px;
+        height: 630px;
+        padding: 64px 80px 56px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        column-gap: 56px;
+      }
+      .text {
+        display: flex;
+        flex-direction: column;
+      }
+      .wordmark {
+        width: 230px;
+        height: auto;
+      }
+      h1 {
+        font-family: "DejaVu Sans Mono", monospace;
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        margin: 48px 0 20px;
+      }
+      .lede {
+        font-family: system-ui, -apple-system, "Helvetica Neue", Arial,
+          sans-serif;
+        font-size: 28px;
+        line-height: 1.35;
+        color: #4f5c53;
+        margin: 0;
+        max-width: 620px;
+      }
+      .url {
+        margin-top: auto;
+        font-family: "DejaVu Sans Mono", monospace;
+        font-size: 24px;
+        color: #2f6b2b;
+      }
+      .mound {
+        align-self: end;
+        width: 336px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="text">
+        <img
+          class="wordmark"
+          src="../../brand/dist/daylight/svg/wordmark.svg"
+          alt=""
+        />
+        <h1>Small software,<br />grown slowly.</h1>
+        <p class="lede">
+          One person making games, mobile apps and other software.
+        </p>
+        <p class="url">bryostudio.com</p>
+      </div>
+      <img
+        class="mound"
+        src="../../brand/dist/daylight/svg/mound-gapped.svg"
+        alt=""
+      />
+    </div>
+  </body>
+</html>
