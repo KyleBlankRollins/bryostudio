@@ -24,6 +24,9 @@ designs/
 scripts/
   send-test-telemetry.ts    posts a sample batch to check the whole path
   build-brand.ts      builds brand/dist/ and the site's brand files (npm run brand)
+  og-image/
+    og-default.html   the link preview image's source: Daylight, the wordmark and the Mound
+    render.sh         renders it to public/og-image.png with headless Chrome
 src/
   layouts/
     Base.astro        the shell of every page: head, header, footer
@@ -62,6 +65,7 @@ public/               copied to the site as they are
   favicon.svg         the Tuft, following the system's light or dark setting (generated)
   favicon.ico         the Tuft at 16, 32 and 48 px (generated)
   apple-touch-icon.png    the Tuft for iOS home screens (generated)
+  og-image.png        the preview LinkedIn, Slack and others show for a shared link (scripts/og-image/)
   robots.txt
 dist/                 the built site (git-ignored)
 screenshots/          local render checks (git-ignored)
